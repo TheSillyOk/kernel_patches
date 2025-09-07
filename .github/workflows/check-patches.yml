@@ -39,6 +39,7 @@ jobs:
           git clone "${{ matrix.ksu.repo_url }}" -b ${{ matrix.ksu.branch }} "KSU"
 
           cd KSU
+          KSU_DIR=$(pwd)
           case "${{ matrix.ksu.name }}" in
             "WILD")
               BASE_VERSION=10200
@@ -58,8 +59,10 @@ jobs:
           echo "--- Patching ${{ matrix.ksu.name }} $KSU_V ---"
           patch -p1 --forward < "../susfs/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch" || true
 
-          cp -r "$PATCHES_DIR"/* .
+          cd "$PATCHES_DIR"
           for patch_name in *.patch; do
+            cd "$KSU_DIR"
             echo "--- Applying ${patch_name} ---"
-            patch -p1 --forward < "${patch_name}"
+            patch -p1 --forward < "$PATCHES_DIR/${patch_name}"
+            cd "$PATCHES_DIR"
           done
