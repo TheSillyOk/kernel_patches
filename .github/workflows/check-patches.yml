@@ -23,11 +23,6 @@ jobs:
             repo_url: "https://github.com/KernelSU-Next/KernelSU-Next"
             branch: "next"
             patches_dir: "next/susfs_fix_patches/v1.5.9"
-          - name: WILD
-            repo_url: "https://github.com/WildKernels/Wild_KSU"
-            branch: "wild"
-            patches_dir: "wild/susfs_fix_patches/v1.5.9"
-
     steps:
       - name: Patch KernelSU with SUSFS patch
         run: |
