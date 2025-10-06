@@ -22,7 +22,7 @@ jobs:
           - name: NEXT
             repo_url: "https://github.com/KernelSU-Next/KernelSU-Next"
             branch: "next"
-            patches_dir: "next/susfs_fix_patches/v1.5.9"
+            patches_dir: "next/susfs_fix_patches/v1.5.11"
     steps:
       - name: Patch KernelSU with SUSFS patch
         run: |
